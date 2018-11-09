@@ -1,0 +1,16 @@
+[package]
+name = "email"
+version = "0.1.0"
+authors = ["whl36512 <whl36512@gmail.com>"]
+
+[profile.release]
+lto = true
+
+[dependencies]
+imap= {git = "https://github.com/mattnenterprise/rust-imap.git"	}
+db= {git = "https://github.com/whl36512/db.git"	}
+native-tls = "0.2"
+regex = "1"
+log = "*"
+simplelog = "^0.5.0"
+lazy_static = "1.2.0"
