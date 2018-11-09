@@ -52,7 +52,6 @@ pub fn main_() -> Result<i32, Box<Error>> {
 		let (deposit_id, amount) = process_email(full_path)? ;
 		match (deposit_id, amount ) {
 			(Some(deposit_id), Some(amount) ) => {
-				let json = format!( r#"{{"deposit_id":"{}", "actual_amount":{}}}"#, deposit_id, amount);
 				let sql_param = SQL_DEPOSIT_PARAM.to_string()
 								.replace("DEPOSIT_ID"	, &deposit_id)
 								.replace("ACTUAL_AMOUNT", &amount.to_string())
