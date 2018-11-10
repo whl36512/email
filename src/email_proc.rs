@@ -12,9 +12,9 @@ use std::fs::File;
 use std::io::{BufReader};
 //use std::io::{Read};
 use self::regex::Regex;
-use util;
+//use util;
 
-use constants::LOG_DIR				;
+//use constants::LOG_DIR				;
 use constants::DIR_EMAIL_READY		;
 use constants::DIR_EMAIL_PROCESSED	;
 use constants::DIR_EMAIL_ERROR		;
@@ -36,19 +36,25 @@ use constants::SQL_DEPOSIT_PARAM		;
 
 
 pub fn main_() -> Result<i32, Box<Error>> {
-	util::logger_init(LOG_DIR);
+//	util::logger_init(LOG_DIR);
 	info!("201811082022 email_proc::main_: started");
+
+
+	let files_iter = fs::read_dir(DIR_EMAIL_READY)?;
+	let count = files_iter.count();
+	if count==0 {
+		info!("201811092239 email_proc::main_: no email file found in {}. exit", DIR_EMAIL_READY) ;
+		return Ok(0);
+	}
 
 	let pool 	= db::db::db_pool(None)		;
 	let db_conn = db::db::db_conn(&pool)		;
-
-
-
+	
 	for entry in fs::read_dir(DIR_EMAIL_READY)? {
 		let path			=	entry?.path();
 		let full_path		=	path.to_str().unwrap() 	;
 		let file_name		=	path.file_name().unwrap().to_str().unwrap();
-		info!("full_path={}", &full_path) ;
+		info!("201811092256 email_proc::main_: found file {}", &full_path) ;
 		let (deposit_id, amount) = process_email(full_path)? ;
 		match (deposit_id, amount ) {
 			(Some(deposit_id), Some(amount) ) => {

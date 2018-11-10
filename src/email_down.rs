@@ -14,7 +14,7 @@ use std::io::{Write};
 use std::io::{Read};
 use std::error::Error;
 
-use constants::LOG_DIR	;
+//use constants::LOG_DIR	;
 use constants::DIR_EMAIL_DOWNLOAD	;
 use constants::DIR_EMAIL_READY	;
 use constants::EMAIL_MOVE	;
@@ -23,7 +23,7 @@ use constants::DOMAIN	;
 use constants::PORT	;
 use constants::USER_NAME	;
 
-use util;
+//use util;
 
 
 // To connect to the gmail IMAP server with this you will need to allow unsecure apps access.
@@ -31,7 +31,7 @@ use util;
 // Look at the gmail_oauth2.rs example on how to connect to a gmail server securely.
 
 pub fn main_() -> Result<i32, Box<Error>> {
-	util::logger_init(&LOG_DIR)	 ;
+//	util::logger_init(&LOG_DIR)	 ;
 	let (user_name, pw) = read_credential();
 
 	let socket_addr 	= (DOMAIN, PORT);
