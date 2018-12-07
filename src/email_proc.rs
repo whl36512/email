@@ -174,7 +174,7 @@ fn process_email(path: &str ) -> Result <(Option<String>, Option<String>), Box<E
 		&&	pass[8]	<	10000
 		&&	pass[9]	==	pass[8]+1
 		&&	pass[10]==	pass[9]+2 
-		&&	deposit_id.len()==36
+		&&	deposit_id.len()==32
 		&&	amount.len() 	>=4	{
 		info!("201811070001 email_proc::process_email Security check passed for {}", &path);
 		return Ok((Some(deposit_id), Some(amount) ));

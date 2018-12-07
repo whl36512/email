@@ -10,8 +10,8 @@ use std::fs::OpenOptions;
 pub fn logger_init (log_file: &str) {
         CombinedLogger::init(
             vec![
-                TermLogger::new(LevelFilter::Debug, Config::default()).unwrap(),
-                WriteLogger::new(LevelFilter::Info, Config::default(),
+                //TermLogger::new(LevelFilter::Debug, Config::default()).unwrap(),
+                WriteLogger::new(LevelFilter::Debug, Config::default(),
 					OpenOptions::new()
 						//.read(true)
 						//.write(true)
